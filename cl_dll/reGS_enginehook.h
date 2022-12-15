@@ -28,7 +28,7 @@ bool HWHook();
 		{                                                                                                                                  \
 			gEngfuncs.Con_DPrintf("[hw dll] Found " #future_name " at %p (using the %s pattern).\n", ORIG_##future_name, pattern->name()); \
 			void* p##future_name = (void*)ORIG_##future_name;                                                                              \
-			MH_CreateHook(p##future_name, (void*)HOOKED_##future_name, (void**)&ORIG_##future_name);                                       \
+			MH_CreateHook(p##future_name, (void*)##future_name, (void**)&ORIG_##future_name);                                       \
 		}                                                                                                                                  \
 		else                                                                                                                               \
 		{                                                                                                                                  \
