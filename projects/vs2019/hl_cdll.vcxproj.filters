@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\cl_dll">
       <UniqueIdentifier>{01b8d565-8fa1-4999-8cb6-01da5dd1e555}</UniqueIdentifier>
     </Filter>
@@ -63,6 +59,15 @@
     </Filter>
     <Filter Include="Source Files\cl_dll\particleman">
       <UniqueIdentifier>{7085339d-2b33-4cdf-846c-0e4c7d33add8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MinHook">
+      <UniqueIdentifier>{c0fda4e9-f9f9-4c9a-bce9-133a790cd291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SPTLib">
+      <UniqueIdentifier>{52787acf-9473-4b98-9eaf-8c3a33dd2c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine">
+      <UniqueIdentifier>{4bbeb504-9f32-4970-b939-bbcab5653160}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +325,24 @@
     </ClCompile>
     <ClCompile Include="..\..\cl_dll\particleman\CBaseParticle.cpp">
       <Filter>Source Files\cl_dll\particleman</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\MinHook\buffer.c">
+      <Filter>MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\MinHook\hook.c">
+      <Filter>MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\MinHook\trampoline.c">
+      <Filter>MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\MinHook\hde\hde32.c">
+      <Filter>MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\MinHook\hde\hde64.c">
+      <Filter>MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\SPTLib\DetoursUtils.cpp">
+      <Filter>SPTLib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -595,6 +618,48 @@
     </ClInclude>
     <ClInclude Include="..\..\cl_dll\particleman\CBaseParticle.h">
       <Filter>Header Files\cl_dll\particleman</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\MinHook\buffer.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\MinHook\MinHook.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\MinHook\trampoline.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\MinHook\hde\hde32.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\MinHook\hde\hde64.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\MinHook\hde\pstdint.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\MinHook\hde\table32.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\MinHook\hde\table64.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\SPTLib\DetoursUtils.hpp">
+      <Filter>SPTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\SPTLib\MemUtils.h">
+      <Filter>SPTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\SPTLib\patterns.hpp">
+      <Filter>SPTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\SPTLib\patterns_macros.hpp">
+      <Filter>SPTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\SPTLib\sptlib-stdafx.hpp">
+      <Filter>SPTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\SPTLib\Utils.hpp">
+      <Filter>SPTLib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

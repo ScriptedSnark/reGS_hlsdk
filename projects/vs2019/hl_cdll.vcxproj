@@ -64,7 +64,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;CLIENT_DLL;CLIENT_WEAPONS;HL_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\dlls;..\..\cl_dll;..\..\cl_dll\particleman;..\..\public;..\..\common;..\..\pm_shared;..\..\engine;..\..\utils\vgui\include;..\..\game_shared;..\..\external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\dlls;..\..\cl_dll;..\..\cl_dll\particleman;..\..\public;..\..\common;..\..\pm_shared;..\..\engine;..\..\utils\vgui\include;..\..\game_shared;..\..\external;..\..\external\MinHook;..\..\external\SPTLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>/Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -94,7 +94,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;CLIENT_DLL;CLIENT_WEAPONS;HL_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\dlls;..\..\cl_dll;..\..\cl_dll\particleman;..\..\public;..\..\common;..\..\pm_shared;..\..\engine;..\..\utils\vgui\include;..\..\game_shared;..\..\external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\dlls;..\..\cl_dll;..\..\cl_dll\particleman;..\..\public;..\..\common;..\..\pm_shared;..\..\engine;..\..\utils\vgui\include;..\..\game_shared;..\..\external;..\..\external\MinHook;..\..\external\SPTLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>/Zc:threadSafeInit- %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -189,6 +189,12 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClCompile Include="..\..\dlls\tripmine.cpp" />
     <ClCompile Include="..\..\dlls\weapons_shared.cpp" />
     <ClCompile Include="..\..\dlls\glock.cpp" />
+    <ClCompile Include="..\..\external\MinHook\buffer.c" />
+    <ClCompile Include="..\..\external\MinHook\hde\hde32.c" />
+    <ClCompile Include="..\..\external\MinHook\hde\hde64.c" />
+    <ClCompile Include="..\..\external\MinHook\hook.c" />
+    <ClCompile Include="..\..\external\MinHook\trampoline.c" />
+    <ClCompile Include="..\..\external\SPTLib\DetoursUtils.cpp" />
     <ClCompile Include="..\..\game_shared\filesystem_utils.cpp" />
     <ClCompile Include="..\..\game_shared\vgui_checkbutton2.cpp" />
     <ClCompile Include="..\..\game_shared\vgui_grid.cpp" />
@@ -283,6 +289,20 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClInclude Include="..\..\engine\progs.h" />
     <ClInclude Include="..\..\engine\shake.h" />
     <ClInclude Include="..\..\engine\studio.h" />
+    <ClInclude Include="..\..\external\MinHook\buffer.h" />
+    <ClInclude Include="..\..\external\MinHook\hde\hde32.h" />
+    <ClInclude Include="..\..\external\MinHook\hde\hde64.h" />
+    <ClInclude Include="..\..\external\MinHook\hde\pstdint.h" />
+    <ClInclude Include="..\..\external\MinHook\hde\table32.h" />
+    <ClInclude Include="..\..\external\MinHook\hde\table64.h" />
+    <ClInclude Include="..\..\external\MinHook\MinHook.h" />
+    <ClInclude Include="..\..\external\MinHook\trampoline.h" />
+    <ClInclude Include="..\..\external\SPTLib\DetoursUtils.hpp" />
+    <ClInclude Include="..\..\external\SPTLib\MemUtils.h" />
+    <ClInclude Include="..\..\external\SPTLib\patterns.hpp" />
+    <ClInclude Include="..\..\external\SPTLib\patterns_macros.hpp" />
+    <ClInclude Include="..\..\external\SPTLib\sptlib-stdafx.hpp" />
+    <ClInclude Include="..\..\external\SPTLib\Utils.hpp" />
     <ClInclude Include="..\..\game_shared\filesystem_utils.h" />
     <ClInclude Include="..\..\game_shared\vgui_scrollbar2.h" />
     <ClInclude Include="..\..\game_shared\vgui_slider2.h" />
