@@ -2,6 +2,7 @@
 // Used libraries: SPTLib/MinHook
 
 #include "Utils.hpp"
+#include "reGS_patterns.hpp"
 
 bool HWHook()
 {

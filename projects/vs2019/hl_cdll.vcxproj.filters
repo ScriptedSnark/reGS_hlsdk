@@ -667,5 +667,8 @@
     <ClInclude Include="..\..\cl_dll\reGS_enginehook.h">
       <Filter>Header Files\cl_dll</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\cl_dll\reGS_patterns.hpp">
+      <Filter>Header Files\cl_dll</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
