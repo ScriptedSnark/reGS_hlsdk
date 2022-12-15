@@ -36,7 +36,9 @@
 #include "vgui_TeamFortressViewport.h"
 #include "filesystem_utils.h"
 
+#include "PlatformHeaders.h"
 #include "MinHook.h"
+#include "reGS_enginehook.h"
 
 cl_enginefunc_t gEngfuncs;
 CHud gHUD;
@@ -130,7 +132,9 @@ int DLLEXPORT Initialize(cl_enginefunc_t* pEnginefuncs, int iVersion)
 	}
 
 	MH_Initialize();
-	//HWHook();
+
+	if (!HWHook())
+		return 0;
 
 	// get tracker interface, if any
 	return 1;

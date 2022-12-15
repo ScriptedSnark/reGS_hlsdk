@@ -152,6 +152,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClCompile Include="..\..\cl_dll\particleman\CMiniMem.cpp" />
     <ClCompile Include="..\..\cl_dll\particleman\CFrustum.cpp" />
     <ClCompile Include="..\..\cl_dll\particleman\IParticleMan_Active.cpp" />
+    <ClCompile Include="..\..\cl_dll\reGS_enginehook.cpp" />
     <ClCompile Include="..\..\cl_dll\saytext.cpp" />
     <ClCompile Include="..\..\cl_dll\statusbar.cpp" />
     <ClCompile Include="..\..\cl_dll\status_icons.cpp" />
@@ -232,6 +233,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClInclude Include="..\..\cl_dll\particleman\particleman.h" />
     <ClInclude Include="..\..\cl_dll\particleman\particleman_internal.h" />
     <ClInclude Include="..\..\cl_dll\particleman\CMiniMem.h" />
+    <ClInclude Include="..\..\cl_dll\reGS_enginehook.h" />
     <ClInclude Include="..\..\cl_dll\StudioModelRenderer.h" />
     <ClInclude Include="..\..\cl_dll\tri.h" />
     <ClInclude Include="..\..\cl_dll\vgui_int.h" />

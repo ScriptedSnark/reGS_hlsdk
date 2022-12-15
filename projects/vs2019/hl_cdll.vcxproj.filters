@@ -344,6 +344,9 @@
     <ClCompile Include="..\..\external\SPTLib\DetoursUtils.cpp">
       <Filter>SPTLib</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\cl_dll\reGS_enginehook.cpp">
+      <Filter>Source Files\cl_dll</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\cl_dll\kbutton.h">
@@ -660,6 +663,9 @@
     </ClInclude>
     <ClInclude Include="..\..\external\SPTLib\Utils.hpp">
       <Filter>SPTLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cl_dll\reGS_enginehook.h">
+      <Filter>Header Files\cl_dll</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
