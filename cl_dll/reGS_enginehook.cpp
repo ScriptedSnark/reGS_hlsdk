@@ -20,5 +20,7 @@ bool HWHook()
 	GLDraw_Hook();
 	TextDraw_Hook();
 
+	MH_EnableHook(MH_ALL_HOOKS);
+
 	return true;
 }
