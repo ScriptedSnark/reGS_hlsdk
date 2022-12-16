@@ -7,6 +7,8 @@
 
 // com_model.h
 
+#ifndef COM_MODEL_H
+#define COM_MODEL_H
 #pragma once
 
 #define STUDIO_RENDER 1
@@ -346,3 +348,5 @@ typedef struct player_info_s
 	char hashedcdkey[16];
 	uint64 m_nSteamID;
 } player_info_t;
+
+#endif // COM_MODEL_H

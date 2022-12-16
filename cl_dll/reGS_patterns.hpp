@@ -309,7 +309,7 @@ PATTERNS(SPR_Pointer,
 	"HL-SteamPipe-8684",
 	"55 8B EC 8B 45 ?? 8B 08 8B 81");
 
-PATTERNS(SPR_Set,
+PATTERNS(ENGSPR_Set,
 	"HL-SteamPipe-8684",
 	"55 8B EC 83 EC 08 8D 45 ?? 8D 4D ?? 50 8D 55 ?? 51 8D 45 ?? 52 50");
 

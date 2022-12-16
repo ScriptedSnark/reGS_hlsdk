@@ -69,6 +69,12 @@
     <Filter Include="Source Files\engine">
       <UniqueIdentifier>{4bbeb504-9f32-4970-b939-bbcab5653160}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\engine\vgui2">
+      <UniqueIdentifier>{1cc0eb06-03ee-421e-beb9-028ece08aaa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\engine\vgui2">
+      <UniqueIdentifier>{300c4262-9531-49a2-a400-4a42da5ae6d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\dlls\crossbow.cpp">
@@ -346,6 +352,12 @@
     </ClCompile>
     <ClCompile Include="..\..\cl_dll\reGS_enginehook.cpp">
       <Filter>Source Files\cl_dll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\gl_draw.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\vgui2\text_draw.cpp">
+      <Filter>Source Files\engine\vgui2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -669,6 +681,33 @@
     </ClInclude>
     <ClInclude Include="..\..\cl_dll\reGS_patterns.hpp">
       <Filter>Header Files\cl_dll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\gl_model.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\gl_draw.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\spritegn.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\modelgen.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cl_dll\wrect.h">
+      <Filter>Header Files\cl_dll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\wad.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\bspfile.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\glquake.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\vgui2\text_draw.h">
+      <Filter>Header Files\engine\vgui2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

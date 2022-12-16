@@ -8,6 +8,12 @@
 #define REGS_ENGINEHOOK_H_GUARD
 #pragma once
 
+typedef int (*_GL_Bind)(int texnum);
+typedef void (*_VGUI2_ResetCurrentTexture)();
+
+extern _GL_Bind ORIG_GL_Bind;
+extern _VGUI2_ResetCurrentTexture ORIG_VGUI2_ResetCurrentTexture;
+
 bool HWHook();
 
 #define Find(future_name)                                                                                                                  \
