@@ -1,3 +1,13 @@
+#ifdef UTILS_HPP_RECURSE_GUARD
+#error Recursive header files inclusion detected in Utils.hpp
+#else //UTILS_HPP_RECURSE_GUARD
+
+#define UTILS_HPP_RECURSE_GUARD
+
+#ifndef UTILS_HPP_GUARD
+#define UTILS_HPP_GUARD
+#pragma once
+
 #include <array>
 #include "MemUtils.h"
 #include "patterns.hpp"
@@ -79,3 +89,8 @@ protected:
 	void* m_Base;
 	size_t m_Length;
 } Utils;
+
+#endif //UTILS_HPP_GUARD
+
+#undef UTILS_HPP_RECURSE_GUARD
+#endif //UTILS_HPP_RECURSE_GUARDS

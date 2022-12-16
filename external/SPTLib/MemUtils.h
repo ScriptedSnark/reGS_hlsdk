@@ -1,3 +1,11 @@
+#ifdef MEMUTILS_H_RECURSE_GUARD
+#error Recursive header files inclusion detected in MemUtils.h
+#else //MEMUTILS_H_RECURSE_GUARD
+
+#define MEMUTILS_H_RECURSE_GUARD
+
+#ifndef MEMUTILS_H_GUARD
+#define MEMUTILS_H_GUARD
 #pragma once
 
 #include <Windows.h>
@@ -47,7 +55,7 @@ static LazilyConstructed<std::unordered_map<void*, std::unordered_map<void*, voi
 // Mutex happens to default to all zeros as far as I can tell, at least in libstdc++.
 static std::mutex symbolLookupHookMutex;
 
-bool GetModuleInfo(void* moduleHandle, void** moduleBase, size_t* moduleSize)
+inline bool GetModuleInfo(void* moduleHandle, void** moduleBase, size_t* moduleSize)
 {
 	if (!moduleHandle)
 		return false;
@@ -64,7 +72,7 @@ bool GetModuleInfo(void* moduleHandle, void** moduleBase, size_t* moduleSize)
 	return true;
 }
 
-bool GetModuleInfo(const std::wstring& moduleName, void** moduleHandle, void** moduleBase, size_t* moduleSize)
+inline bool GetModuleInfo(const std::wstring& moduleName, void** moduleHandle, void** moduleBase, size_t* moduleSize)
 {
 	HMODULE Handle = GetModuleHandleW(moduleName.c_str());
 	auto ret = GetModuleInfo(Handle, moduleBase, moduleSize);
@@ -75,7 +83,7 @@ bool GetModuleInfo(const std::wstring& moduleName, void** moduleHandle, void** m
 	return ret;
 }
 
-void AddSymbolLookupHook(void* moduleHandle, void* original, void* target)
+inline void AddSymbolLookupHook(void* moduleHandle, void* original, void* target)
 {
 	if (!original)
 		return;
@@ -84,7 +92,7 @@ void AddSymbolLookupHook(void* moduleHandle, void* original, void* target)
 	symbolLookupHooks.get()[moduleHandle][original] = target;
 }
 
-void* GetSymbolAddress(void* moduleHandle, const char* functionName)
+inline void* GetSymbolAddress(void* moduleHandle, const char* functionName)
 {
 	return GetProcAddress(reinterpret_cast<HMODULE>(moduleHandle), functionName);
 }
@@ -105,7 +113,7 @@ inline uintptr_t find_pattern(const void* start, size_t length, const PatternWra
 }
 
 template <class Iterator>
-Iterator find_first_sequence(
+inline Iterator find_first_sequence(
 	const void* start,
 	size_t length,
 	Iterator begin,
@@ -123,7 +131,7 @@ Iterator find_first_sequence(
 }
 
 
-void MarkAsExecutable(void* addr)
+inline void MarkAsExecutable(void* addr)
 {
 	if (!addr)
 		return;
@@ -164,7 +172,7 @@ inline void MarkAsExecutable(T addr)
 	MarkAsExecutable(reinterpret_cast<void*>(addr));
 }
 
-void ReplaceBytes(void* addr, size_t length, const uint8_t* newBytes)
+inline void ReplaceBytes(void* addr, size_t length, const uint8_t* newBytes)
 {
 	DWORD dwOldProtect;
 	auto result = VirtualProtect(addr, length, PAGE_EXECUTE_READWRITE, &dwOldProtect);
@@ -320,10 +328,10 @@ struct identity
 
 namespace detail
 {
-void Intercept(const std::wstring& moduleName, size_t n, const std::pair<void**, void*> funcPairs[]);
+inline void Intercept(const std::wstring& moduleName, size_t n, const std::pair<void**, void*> funcPairs[]);
 
 
-void Intercept(const std::wstring& moduleName, size_t n, const std::pair<void**, void*> funcPairs[])
+inline void Intercept(const std::wstring& moduleName, size_t n, const std::pair<void**, void*> funcPairs[])
 {
 	DetoursUtils::AttachDetours(moduleName, n, funcPairs);
 }
@@ -358,3 +366,8 @@ inline void Intercept(const std::wstring& moduleName, FuncType& target, typename
 	detail::Intercept(moduleName, funcPairs, rest...);
 }
 }
+
+#endif //MEMUTILS_H_GUARD
+
+#undef MEMUTILS_H_RECURSE_GUARD
+#endif //MEMUTILS_H_RECURSE_GUARD

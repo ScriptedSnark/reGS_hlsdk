@@ -168,3 +168,9 @@ void Draw_Frame(mspriteframe_t* pFrame, int ix, int iy, const wrect_t* prcSubRec
 	glDepthMask(GL_TRUE);
 	glDisable(GL_SCISSOR_TEST);
 }
+
+void GLDraw_Hook()
+{
+	Hook(GL_Bind);
+	gEngfuncs.pfnFillRGBA = Draw_FillRGBA;
+}

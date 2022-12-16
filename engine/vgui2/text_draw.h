@@ -9,6 +9,7 @@
 #pragma once
 
 void VGUI2_ResetCurrentTexture();
+void TextDraw_Hook();
 
 #endif //TEXT_DRAW_H_GUARD
 

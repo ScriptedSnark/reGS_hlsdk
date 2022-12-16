@@ -51,6 +51,8 @@ void Draw_Pic(int x, int y, qpic_t* pic);
 
 void Draw_BeginDisc();
 
+void GLDraw_Hook();
+
 #define MAX_GLTEXTURES 4800
 
 #endif //GL_DRAW_H_GUARD

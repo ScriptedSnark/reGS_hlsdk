@@ -2,9 +2,8 @@
 // Used libraries: SPTLib/MinHook
 
 #include "glquake.h"
-#include "Utils.hpp"
-#include "MinHook.h"
-#include "reGS_patterns.hpp"
+
+Utils utils = Utils::Utils(NULL, NULL, NULL);
 
 _GL_Bind ORIG_GL_Bind;
 _VGUI2_ResetCurrentTexture ORIG_VGUI2_ResetCurrentTexture;
@@ -18,13 +17,11 @@ bool HWHook()
 	if (!MemUtils::GetModuleInfo(L"hw.dll", &handle, &base, &size))
 		return false;
 
-	auto utils = Utils::Utils(handle, base, size);
+	utils = Utils::Utils(handle, base, size);
 
 	/* Hooking all necessary funcs */
-	Hook(GL_Bind);
-	Hook(VGUI2_ResetCurrentTexture);
-
-	gEngfuncs.pfnFillRGBA = Draw_FillRGBA;
+	GLDraw_Hook();
+	TextDraw_Hook();
 
 	return true;
 }

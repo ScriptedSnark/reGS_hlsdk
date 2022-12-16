@@ -16,6 +16,11 @@
 #include <gl/GL.h>
 
 #include "reGS_enginehook.h"
+#include "Utils.hpp"
+#include "MinHook.h"
+#include "reGS_patterns.hpp"
+
+extern Utils utils;
 
 #include "wad.h"
 #include "gl_model.h"
