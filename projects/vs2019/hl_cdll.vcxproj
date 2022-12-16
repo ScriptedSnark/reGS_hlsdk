@@ -190,6 +190,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClCompile Include="..\..\dlls\tripmine.cpp" />
     <ClCompile Include="..\..\dlls\weapons_shared.cpp" />
     <ClCompile Include="..\..\dlls\glock.cpp" />
+    <ClCompile Include="..\..\engine\buildnum.cpp" />
     <ClCompile Include="..\..\engine\gl_draw.cpp" />
     <ClCompile Include="..\..\engine\vgui2\text_draw.cpp" />
     <ClCompile Include="..\..\external\MinHook\buffer.c" />
@@ -287,6 +288,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClInclude Include="..\..\common\weaponinfo.h" />
     <ClInclude Include="..\..\dlls\cdll_dll.h" />
     <ClInclude Include="..\..\engine\APIProxy.h" />
+    <ClInclude Include="..\..\engine\buildnum.h" />
     <ClInclude Include="..\..\engine\cdll_int.h" />
     <ClInclude Include="..\..\engine\custom.h" />
     <ClInclude Include="..\..\engine\customentity.h" />

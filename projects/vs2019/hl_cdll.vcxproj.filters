@@ -359,6 +359,9 @@
     <ClCompile Include="..\..\engine\vgui2\text_draw.cpp">
       <Filter>Source Files\engine\vgui2</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\buildnum.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\cl_dll\kbutton.h">
@@ -708,6 +711,9 @@
     </ClInclude>
     <ClInclude Include="..\..\engine\vgui2\text_draw.h">
       <Filter>Header Files\engine\vgui2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\buildnum.h">
+      <Filter>Header Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
