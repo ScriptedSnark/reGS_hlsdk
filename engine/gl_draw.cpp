@@ -3,6 +3,8 @@
 _GL_Bind ORIG_GL_Bind = NULL;
 _Draw_Frame ORIG_Draw_Frame = NULL;
 
+cvar_t* gl_spriteblend;
+
 static int scissor_x = 0, scissor_y = 0, scissor_width = 0, scissor_height = 0;
 static qboolean giScissorTest = false;
 
@@ -172,8 +174,57 @@ void Draw_Frame(mspriteframe_t* pFrame, int ix, int iy, const wrect_t* prcSubRec
 	glDisable(GL_SCISSOR_TEST);
 }
 
+void Draw_SpriteFrame(mspriteframe_t* pFrame, unsigned short* pPalette, int x, int y, const wrect_t* prcSubRect)
+{
+	Draw_Frame(pFrame, x, y, prcSubRect);
+}
+
+void Draw_SpriteFrameHoles(mspriteframe_t* pFrame, unsigned short* pPalette, int x, int y, const wrect_t* prcSubRect)
+{
+	glEnable(GL_ALPHA_TEST);
+
+	if (gl_spriteblend->value != 0.0)
+	{
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+	}
+
+	Draw_Frame(pFrame, x, y, prcSubRect);
+	glDisable(GL_ALPHA_TEST);
+	glDisable(GL_BLEND);
+}
+
+void Draw_SpriteFrameAdditive(mspriteframe_t* pFrame, unsigned short* pPalette, int x, int y, const wrect_t* prcSubRect)
+{
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ONE, GL_ONE);
+	Draw_Frame(pFrame, x, y, prcSubRect);
+	glDisable(GL_BLEND);
+}
+
+void Draw_SpriteFrameGeneric(mspriteframe_t* pFrame, unsigned short* pPalette, int x, int y, const wrect_t* prcSubRect, int src, int dest, int width, int height)
+{
+	int w, h;
+
+	w = pFrame->width;
+	pFrame->width = width;
+
+	h = pFrame->height;
+	pFrame->height = height;
+
+	glEnable(GL_BLEND);
+	glBlendFunc(src, dest);
+	Draw_Frame(pFrame, x, y, prcSubRect);
+	glDisable(GL_BLEND);
+
+	pFrame->width = w;
+	pFrame->height = h;
+}
+
 void GLDraw_Hook()
 {
+	gl_spriteblend = gEngfuncs.pfnGetCvarPointer("gl_spriteblend");
+
 	Hook(GL_Bind);
 	Hook(Draw_Frame);
 
