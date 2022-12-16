@@ -5,9 +5,6 @@
 
 Utils utils = Utils::Utils(NULL, NULL, NULL);
 
-_GL_Bind ORIG_GL_Bind;
-_VGUI2_ResetCurrentTexture ORIG_VGUI2_ResetCurrentTexture;
-
 bool HWHook()
 {
 	void* handle;

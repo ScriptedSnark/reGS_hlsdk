@@ -1,5 +1,8 @@
 #include "glquake.h"
 
+_GL_Bind ORIG_GL_Bind = NULL;
+_Draw_Frame ORIG_Draw_Frame = NULL;
+
 static int scissor_x = 0, scissor_y = 0, scissor_width = 0, scissor_height = 0;
 static qboolean giScissorTest = false;
 
@@ -172,5 +175,7 @@ void Draw_Frame(mspriteframe_t* pFrame, int ix, int iy, const wrect_t* prcSubRec
 void GLDraw_Hook()
 {
 	Hook(GL_Bind);
+	Hook(Draw_Frame);
+
 	gEngfuncs.pfnFillRGBA = Draw_FillRGBA;
 }

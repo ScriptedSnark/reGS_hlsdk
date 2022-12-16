@@ -11,6 +11,12 @@
 #include "wrect.h"
 #include "wad.h"
 
+typedef int (*_GL_Bind)(int texnum);
+typedef void (*_Draw_Frame)(mspriteframe_t* pFrame, int ix, int iy, const wrect_t* prcSubRect);
+
+extern _GL_Bind ORIG_GL_Bind;
+extern _Draw_Frame ORIG_Draw_Frame;
+
 void EnableScissorTest(int x, int y, int width, int height);
 void DisableScissorTest(void);
 

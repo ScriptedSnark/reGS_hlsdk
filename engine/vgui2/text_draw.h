@@ -8,6 +8,9 @@
 #define TEXT_DRAW_H_GUARD
 #pragma once
 
+typedef void (*_VGUI2_ResetCurrentTexture)();
+extern _VGUI2_ResetCurrentTexture ORIG_VGUI2_ResetCurrentTexture;
+
 void VGUI2_ResetCurrentTexture();
 void TextDraw_Hook();
 
