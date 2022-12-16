@@ -11,6 +11,7 @@
 #include "wrect.h"
 #include "wad.h"
 
+typedef int (*_Draw_String)(int x, int y, char* str);
 typedef int (*_GL_Bind)(int texnum);
 typedef void (*_Draw_Frame)(mspriteframe_t* pFrame, int ix, int iy, const wrect_t* prcSubRect);
 

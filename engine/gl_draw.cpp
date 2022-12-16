@@ -1,5 +1,6 @@
 #include "glquake.h"
 
+_Draw_String ORIG_Draw_String = NULL;
 _GL_Bind ORIG_GL_Bind = NULL;
 _Draw_Frame ORIG_Draw_Frame = NULL;
 
@@ -27,6 +28,11 @@ void Draw_FillRGBA(int x, int y, int w, int h, int r, int g, int b, int a)
 	glColor3f(1.0, 1.0, 1.0);
 	glEnable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
+}
+
+int Draw_String(int x, int y, char* str)
+{
+	ORIG_Draw_String(x, y, str); // TODO: implement
 }
 
 void Draw_FillRGBABlend(int x, int y, int w, int h, int r, int g, int b, int a)
@@ -225,6 +231,7 @@ void GLDraw_Hook()
 {
 	gl_spriteblend = gEngfuncs.pfnGetCvarPointer("gl_spriteblend");
 
+	Hook(Draw_String);
 	Hook(GL_Bind);
 	Hook(Draw_Frame);
 
