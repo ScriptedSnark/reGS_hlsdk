@@ -32,7 +32,7 @@ void Draw_FillRGBA(int x, int y, int w, int h, int r, int g, int b, int a)
 
 int Draw_String(int x, int y, char* str)
 {
-	ORIG_Draw_String(x, y, str); // TODO: implement
+	return ORIG_Draw_String(x, y, str); // TODO: implement
 }
 
 void Draw_FillRGBABlend(int x, int y, int w, int h, int r, int g, int b, int a)
