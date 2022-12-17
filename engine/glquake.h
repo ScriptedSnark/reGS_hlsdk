@@ -26,6 +26,7 @@ extern Utils utils;
 #include "gl_model.h"
 #include "gl_draw.h"
 #include "vgui2/text_draw.h"
+#include "gl_screen.h"
 
 #endif //GLQUAKE_H_GUARD
 

@@ -192,6 +192,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClCompile Include="..\..\dlls\glock.cpp" />
     <ClCompile Include="..\..\engine\buildnum.cpp" />
     <ClCompile Include="..\..\engine\gl_draw.cpp" />
+    <ClCompile Include="..\..\engine\gl_screen.cpp" />
     <ClCompile Include="..\..\engine\vgui2\text_draw.cpp" />
     <ClCompile Include="..\..\external\MinHook\buffer.c" />
     <ClCompile Include="..\..\external\MinHook\hde\hde32.c" />
@@ -297,6 +298,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClInclude Include="..\..\engine\glquake.h" />
     <ClInclude Include="..\..\engine\gl_draw.h" />
     <ClInclude Include="..\..\engine\gl_model.h" />
+    <ClInclude Include="..\..\engine\gl_screen.h" />
     <ClInclude Include="..\..\engine\modelgen.h" />
     <ClInclude Include="..\..\engine\progdefs.h" />
     <ClInclude Include="..\..\engine\progs.h" />
