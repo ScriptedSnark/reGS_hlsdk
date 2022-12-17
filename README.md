@@ -18,7 +18,7 @@ Used libraries:
 
 ### Building
 
-### Visual Studio 2019
+#### Visual Studio 2019
 1. Install [Visual Studio 2019](https://my.visualstudio.com/Downloads?q=Visual%20Studio%20Community%202019). In the Visual Studio Installer, select Desktop Development for C++.
 2. Open Visual Studio.
 3. On the starting screen, click "Clone or check out code".
