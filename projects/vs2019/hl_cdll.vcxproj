@@ -191,6 +191,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClCompile Include="..\..\dlls\weapons_shared.cpp" />
     <ClCompile Include="..\..\dlls\glock.cpp" />
     <ClCompile Include="..\..\engine\buildnum.cpp" />
+    <ClCompile Include="..\..\engine\cl_draw.cpp" />
     <ClCompile Include="..\..\engine\cl_tent.cpp" />
     <ClCompile Include="..\..\engine\gl_draw.cpp" />
     <ClCompile Include="..\..\engine\gl_screen.cpp" />
@@ -292,6 +293,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClInclude Include="..\..\engine\APIProxy.h" />
     <ClInclude Include="..\..\engine\buildnum.h" />
     <ClInclude Include="..\..\engine\cdll_int.h" />
+    <ClInclude Include="..\..\engine\cl_draw.h" />
     <ClInclude Include="..\..\engine\cl_tent.h" />
     <ClInclude Include="..\..\engine\custom.h" />
     <ClInclude Include="..\..\engine\customentity.h" />

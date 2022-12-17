@@ -26,6 +26,7 @@ extern Utils utils;
 #include "gl_model.h"
 #include "cl_tent.h"
 #include "gl_draw.h"
+#include "cl_draw.h"
 #include "vgui2/text_draw.h"
 #include "gl_screen.h"
 

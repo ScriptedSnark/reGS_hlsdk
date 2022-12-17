@@ -368,6 +368,9 @@
     <ClCompile Include="..\..\engine\cl_tent.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\cl_draw.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\cl_dll\kbutton.h">
@@ -725,6 +728,9 @@
       <Filter>Header Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\engine\cl_tent.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\cl_draw.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
