@@ -1,5 +1,6 @@
 #include "glquake.h"
 
+#undef SPR_Frames
 #undef SPR_Set
 
 #define SPR_MAX_SPRITES 256
@@ -19,6 +20,23 @@ static SPRITELIST* gSpriteList = nullptr;
 msprite_t* SPR_Pointer(SPRITELIST* pList)
 {
 	return (msprite_t*)pList->pSprite->cache.data;
+}
+
+int SPR_Frames(HSPRITE hSprite)
+{
+	SPRITELIST* sprlist;
+
+	hSprite--;
+
+	if (hSprite < 0 || hSprite >= gSpriteCount)
+		return NULL;
+
+	sprlist = &gSpriteList[hSprite];
+
+	if (sprlist)
+		return sprlist->frameCount;
+
+	return NULL;
 }
 
 int SPR_Height(HSPRITE hSprite, int frame)
