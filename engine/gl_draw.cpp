@@ -9,6 +9,31 @@ cvar_t* gl_spriteblend;
 static int scissor_x = 0, scissor_y = 0, scissor_width = 0, scissor_height = 0;
 static qboolean giScissorTest = false;
 
+void EnableScissorTest(int x, int y, int width, int height)
+{
+	x = std::clamp(x, 0, ScreenWidth);
+	y = std::clamp(y, 0, ScreenHeight);
+	width = std::clamp(width, 0, ScreenWidth - x);
+	height = std::clamp(height, 0, ScreenHeight - y);
+
+	scissor_x = x;
+	scissor_width = width;
+	scissor_y = y;
+	scissor_height = height;
+
+	giScissorTest = true;
+}
+
+void DisableScissorTest(void)
+{
+	scissor_x = 0;
+	scissor_width = 0;
+	scissor_y = 0;
+	scissor_height = 0;
+
+	giScissorTest = false;
+}
+
 void Draw_FillRGBA(int x, int y, int w, int h, int r, int g, int b, int a)
 {
 	glDisable(GL_TEXTURE_2D);

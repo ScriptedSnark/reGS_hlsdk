@@ -1,5 +1,7 @@
 #include "glquake.h"
 
+#undef SPR_EnableScissor
+#undef SPR_DisableScissor
 #undef SPR_Frames
 #undef SPR_Set
 
@@ -103,6 +105,16 @@ void SPR_Set(HSPRITE hSprite, int r, int g, int b)
 		if (gpSprite)
 			glColor4f(r / 255.0, g / 255.0, b / 255.0, 1.0);
 	}
+}
+
+void SPR_EnableScissor(int x, int y, int width, int height)
+{
+	EnableScissorTest(x, y, width, height);
+}
+
+void SPR_DisableScissor()
+{
+	DisableScissorTest();
 }
 
 void CLDraw_Hook()
