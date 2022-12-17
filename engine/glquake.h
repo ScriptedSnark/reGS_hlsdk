@@ -24,6 +24,7 @@ extern Utils utils;
 
 #include "wad.h"
 #include "gl_model.h"
+#include "cl_tent.h"
 #include "gl_draw.h"
 #include "vgui2/text_draw.h"
 #include "gl_screen.h"
