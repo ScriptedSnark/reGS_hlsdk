@@ -21,6 +21,29 @@ msprite_t* SPR_Pointer(SPRITELIST* pList)
 	return (msprite_t*)pList->pSprite->cache.data;
 }
 
+int SPR_Height(HSPRITE hSprite, int frame)
+{
+	SPRITELIST* sprlist;
+	mspriteframe_t* sprframe;
+
+	hSprite--;
+
+	if (hSprite < 0 || hSprite >= gSpriteCount)
+		return NULL;
+
+	sprlist = &gSpriteList[hSprite];
+
+	if (!sprlist)
+		return NULL;
+
+	sprframe = R_GetSpriteFrame(SPR_Pointer(sprlist), frame);
+
+	if (sprframe)
+		return sprframe->height;
+
+	return NULL;
+}
+
 int SPR_Width(HSPRITE hSprite, int frame)
 {
 	SPRITELIST* sprlist;
