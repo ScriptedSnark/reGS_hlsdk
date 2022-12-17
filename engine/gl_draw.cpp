@@ -59,6 +59,15 @@ void Draw_FillRGBABlend(int x, int y, int w, int h, int r, int g, int b, int a)
 	glDisable(GL_BLEND);
 }
 
+GLuint GL_GenTexture()
+{
+	GLuint tex;
+
+	glGenTextures(1, &tex);
+
+	return tex;
+}
+
 void GL_Bind(int texnum)
 {
 	ORIG_GL_Bind(texnum); // TODO: implement
