@@ -1,8 +1,3 @@
-/**
- * Copyright - ScriptedSnark, 2022.
- * cl_draw.h - description
- */
-
 #ifdef CL_DRAW_H_RECURSE_GUARD
 #error Recursive header files inclusion detected in cl_draw.h
 #else //CL_DRAW_H_RECURSE_GUARD

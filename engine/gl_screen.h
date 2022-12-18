@@ -1,8 +1,3 @@
-/**
- * Copyright - ScriptedSnark, 2022.
- * gl_screen.h - description
- */
-
 #ifdef GL_SCREEN_H_RECURSE_GUARD
 #error Recursive header files inclusion detected in gl_screen.h
 #else //GL_SCREEN_H_RECURSE_GUARD
