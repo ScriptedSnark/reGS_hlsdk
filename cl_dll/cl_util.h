@@ -85,8 +85,8 @@ inline struct cvar_s* CVAR_CREATE(const char* cv, const char* val, const int fla
 
 
 // Gets the height & width of a sprite,  at the specified frame
-inline int SPR_Height(HSPRITE x, int f) { return gEngfuncs.pfnSPR_Height(x, f); }
-inline int SPR_Width(HSPRITE x, int f) { return gEngfuncs.pfnSPR_Width(x, f); }
+int SPR_Height(HSPRITE x, int f);
+int SPR_Width(HSPRITE x, int f);
 
 inline client_textmessage_t* TextMessageGet(const char* pName) { return gEngfuncs.pfnTextMessageGet(pName); }
 inline int TextMessageDrawChar(int x, int y, int number, int r, int g, int b)
