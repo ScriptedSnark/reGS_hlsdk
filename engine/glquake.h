@@ -22,6 +22,7 @@
 
 extern Utils utils;
 
+#include "mem.h"
 #include "wad.h"
 #include "gl_model.h"
 #include "cl_tent.h"
