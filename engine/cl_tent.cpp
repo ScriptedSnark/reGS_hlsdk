@@ -1,5 +1,13 @@
 #include "glquake.h"
 
+cvar_t* violence_hblood;
+cvar_t* violence_ablood;
+
+BOOL CL_ShowTEBlood()
+{
+	return violence_hblood->value != 0.0 || violence_ablood->value != 0.0;
+}
+
 mspriteframe_t* R_GetSpriteFrame(msprite_t* pSprite, int frame)
 {
 	if (!pSprite)
@@ -21,4 +29,10 @@ mspriteframe_t* R_GetSpriteFrame(msprite_t* pSprite, int frame)
 		return pSprite->frames[frame].frameptr;
 
 	return NULL;
+}
+
+void CL_TEnt_Hook()
+{
+	violence_hblood = gEngfuncs.pfnGetCvarPointer("violence_hblood");
+	violence_ablood = gEngfuncs.pfnGetCvarPointer("violence_ablood");
 }
