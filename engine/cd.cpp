@@ -287,13 +287,28 @@ void CCDAudio::MP3_PlayTrackFinalize(int trackNum, bool looping)
 
 bool CCDAudio::MP3_Init(void)
 {
-	// TODO: implement - ScriptedSnark
-	return false;
+	MP3_ReleaseDriver();
+
+	AIL_set_redist_directory(".");
+	AIL_startup();
+	AIL_set_preference(17, 0);
+	AIL_set_preference(6, 10);
+
+	MP3digitalDriver = AIL_open_digital_driver(22050, 16, 2, AIL_OPEN_DIGITAL_FORCE_PREFERENCE);
+	return MP3digitalDriver != 0;
 }
 
 void CCDAudio::MP3_Shutdown(void)
 {
-	// TODO: implement - ScriptedSnark
+	MP3_StopStream();
+	MP3_ReleaseDriver();
+	AIL_shutdown();
+
+	for (int i = g_iMP3FirstMalloc; i < ARRAYSIZE(g_pszMP3trackFileMap); i++)
+	{
+		if (g_pszMP3trackFileMap[i])
+			Mem_Free(g_pszMP3trackFileMap[i]);
+	}
 }
 
 void CCDAudio::MP3_Resume_Audio(void)
