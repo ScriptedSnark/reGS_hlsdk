@@ -19,6 +19,7 @@ bool HWHook()
 	/* Hooking all necessary funcs */
 	GLDraw_Hook();
 	TextDraw_Hook();
+	VGuiWrap2_Hook();
 
 	MH_EnableHook(MH_ALL_HOOKS);
 

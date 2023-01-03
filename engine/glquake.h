@@ -30,6 +30,7 @@ extern Utils utils;
 #include "cl_draw.h"
 #include "vgui2/text_draw.h"
 #include "gl_screen.h"
+#include "vgui_intwrap2.h"
 
 #endif //GLQUAKE_H_GUARD
 
