@@ -44,7 +44,31 @@ void PrimeMusicStream(char* filename, int looping)
 
 CCDAudio::CCDAudio(void)
 {
-	// TODO: implement - ScriptedSnark
+	m_nMaxCDTrack = 0;
+	m_uiDeviceID = 0;
+
+	ResetCDTimes();
+
+	m_bIsCDValid = false;
+	m_bIsPlaying = false;
+	m_bIsPrimed = false;
+	m_bIsInMiddleOfPriming = false;
+	m_bWasPlaying = false;
+	m_bInitialized = false;
+	m_bEnabled = false;
+	m_bIsLooping = false;
+
+	m_flVolume = 1.0;
+	m_flMP3Volume = 1.0;
+	m_dFadeOutTime = 0.0;
+
+	m_nPlayTrack = 0;
+
+	m_szPendingPlayFilename[0] = '\0';
+
+	m_bResumeOnSwitch = false;
+
+	memset(m_rgRemapCD, 0, sizeof(m_rgRemapCD));
 }
 
 CCDAudio::~CCDAudio(void)
