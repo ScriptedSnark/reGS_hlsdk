@@ -19,6 +19,8 @@ public:
 	virtual bool AddThreadItem(vfunc pfn, int param1, int param2) = 0;
 };
 
+extern IThread* thread;
+
 #endif //ITHREAD_H_GUARD
 
 #undef ITHREAD_H_RECURSE_GUARD

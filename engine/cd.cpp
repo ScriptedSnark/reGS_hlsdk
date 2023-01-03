@@ -144,7 +144,59 @@ void CCDAudio::_CDUpdate(int, int)
 
 int CCDAudio::Init(void)
 {
-	// TODO: implement - ScriptedSnark
+	m_MP3.inuse = false;
+	m_MP3.suspended = false;
+	m_MP3.playing = false;
+	m_MP3.trackname[0] = '\0';
+	m_MP3.tracknum = 0;
+	m_MP3.looping = false;
+	m_MP3.volume = 100.0;
+
+	memset(g_pszMP3trackFileMap, 0, sizeof(g_pszMP3trackFileMap));
+	g_pszMP3trackFileMap[0] = g_pszMP3trackFileMap[1] = "";
+	g_pszMP3trackFileMap[2] = "media\\Half-Life01.mp3";
+	g_pszMP3trackFileMap[3] = "media\\Prospero01.mp3";
+	g_pszMP3trackFileMap[4] = "media\\Half-Life12.mp3";
+	g_pszMP3trackFileMap[5] = "media\\Half-Life07.mp3";
+	g_pszMP3trackFileMap[6] = "media\\Half-Life10.mp3";
+	g_pszMP3trackFileMap[7] = "media\\Suspense01.mp3";
+	g_pszMP3trackFileMap[8] = "media\\Suspense03.mp3";
+	g_pszMP3trackFileMap[9] = "media\\Half-Life09.mp3";
+	g_pszMP3trackFileMap[10] = "media\\Half-Life02.mp3";
+	g_pszMP3trackFileMap[11] = "media\\Half-Life13.mp3";
+	g_pszMP3trackFileMap[12] = "media\\Half-Life04.mp3";
+	g_pszMP3trackFileMap[13] = "media\\Half-Life15.mp3";
+	g_pszMP3trackFileMap[14] = "media\\Half-Life14.mp3";
+	g_pszMP3trackFileMap[15] = "media\\Half-Life16.mp3";
+	g_pszMP3trackFileMap[16] = "media\\Suspense02.mp3";
+	g_pszMP3trackFileMap[17] = "media\\Half-Life03.mp3";
+	g_pszMP3trackFileMap[18] = "media\\Half-Life08.mp3";
+	g_pszMP3trackFileMap[19] = "media\\Prospero02.mp3";
+	g_pszMP3trackFileMap[20] = "media\\Half-Life05.mp3";
+	g_pszMP3trackFileMap[21] = "media\\Prospero04.mp3";
+	g_pszMP3trackFileMap[22] = "media\\Half-Life11.mp3";
+	g_pszMP3trackFileMap[23] = "media\\Half-Life06.mp3";
+	g_pszMP3trackFileMap[24] = "media\\Prospero03.mp3";
+	g_pszMP3trackFileMap[25] = "media\\Half-Life17.mp3";
+	g_pszMP3trackFileMap[26] = "media\\Prospero05.mp3";
+	g_pszMP3trackFileMap[27] = "media\\Suspense05.mp3";
+	g_pszMP3trackFileMap[28] = "media\\Suspense07.mp3";
+
+	g_iMP3FirstMalloc = g_iMP3NumTracks = 29;
+
+	ResetCDTimes();
+
+	if (MP3_Init())
+		MP3_SetVolume(MP3Volume->value);
+
+	m_bInitialized = true;
+	m_bEnabled = true;
+
+	if (gEngfuncs.CheckParm("-nocdaudio", nullptr) || gEngfuncs.CheckParm("-nosound", nullptr))
+		m_bEnabled = false;
+
+	thread->AddThreadItem(&CCDAudio::_Init, 0, 0);
+
 	return 0;
 }
 
