@@ -77,7 +77,9 @@ CCDAudio::~CCDAudio(void)
 
 void CCDAudio::ResetCDTimes(void)
 {
-	// TODO: implement - ScriptedSnark
+	m_flPlayTime = 0.0;
+	m_dStartTime = 0.0;
+	m_dPauseTime = 0.0;
 }
 
 void CCDAudio::_Stop(int, int)
