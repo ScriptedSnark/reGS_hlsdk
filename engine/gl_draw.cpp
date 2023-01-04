@@ -8,6 +8,10 @@ _GL_Upload32 ORIG_GL_Upload32 = NULL;
 _GL_Upload16 ORIG_GL_Upload16 = NULL;
 
 cvar_t* gl_spriteblend;
+cvar_t* gl_dither;
+
+int texels;
+byte texgammatable[256];
 
 static int scissor_x = 0, scissor_y = 0, scissor_width = 0, scissor_height = 0;
 static qboolean giScissorTest = false;
@@ -276,12 +280,129 @@ void GL_Upload32(unsigned int* data, int width, int height, qboolean mipmap, int
 
 void GL_Upload16(unsigned char* data, int width, int height, qboolean mipmap, int iType, unsigned char* pPal, int filter)
 {
-	ORIG_GL_Upload16(data, width, height, mipmap, iType, pPal, filter);
+	static unsigned trans[640 * 480];
+	unsigned char* pb, *ppix;
+	bool noalpha = true;
+	int texturebytes = width * height;
+	int p;
+
+	if (texturebytes > sizeof(trans))
+	{
+		gEngfuncs.Con_Printf("Can't upload (%ix%i) texture, it's > 640*480 bytes\n", width, height);
+		return;
+	}
+
+	if (iType != TEX_TYPE_LUM)
+	{
+		if (!pPal)
+			return;
+
+		for (int i = 0; i < 768; i++)
+			pPal[i] = texgammatable[pPal[i]];
+	}
+
+	if (TEX_IS_ALPHA(iType))
+	{
+		if (iType == TEX_TYPE_ALPHA_GRADIENT)
+		{
+			for (int i = 0; i < texturebytes; i++)
+			{
+				p = data[i];
+				pb = reinterpret_cast<byte*>(&trans[i]);
+
+				pb[0] = pPal[765];
+				pb[1] = pPal[766];
+				pb[2] = pPal[767];
+				pb[3] = p;
+
+				noalpha = false;
+			}
+		}
+		else if (iType == TEX_TYPE_RGBA)
+		{
+			for (int i = 0; i < texturebytes; i++)
+			{
+				p = data[i];
+				pb = reinterpret_cast<byte*>(&trans[i]);
+
+				pb[0] = pPal[p * 3 + 0];
+				pb[1] = pPal[p * 3 + 1];
+				pb[2] = pPal[p * 3 + 2];
+				pb[3] = p;
+
+				noalpha = false;
+			}
+		}
+		else if (iType == TEX_TYPE_ALPHA)
+		{
+			for (int i = 0; i < texturebytes; i++)
+			{
+				p = data[i];
+				pb = reinterpret_cast<byte*>(&trans[i]);
+
+				if (p == 255)
+				{
+					pb[0] = pb[1] = pb[2] = pb[3] = NULL;
+					noalpha = false;
+				}
+				else
+				{
+					pb[0] = pPal[p * 3 + 0];
+					pb[1] = pPal[p * 3 + 1];
+					pb[2] = pPal[p * 3 + 2];
+					pb[3] = 255;
+				}
+			}
+		}
+
+		if (noalpha)
+			iType = TEX_TYPE_NONE;
+	}
+	else if (iType == TEX_TYPE_NONE)
+	{
+		if (texturebytes & 3)
+			gEngfuncs.Con_Printf("GL_Upload16: s&3\n"); // TODO: implement Sys_Error and replace Con_Printf with Sys_Error
+
+		if (gl_dither->value != 0.0f)
+		{
+			for (int i = 0; i < texturebytes; i++)
+			{
+				p = data[i];
+				pb = reinterpret_cast<byte*>(&trans[i]);
+				ppix = &pPal[p * 3];
+
+				pb[0] = ppix[0] |= (ppix[0] >> 6);
+				pb[1] = ppix[1] |= (ppix[1] >> 6);
+				pb[2] = ppix[2] |= (ppix[2] >> 6);
+				pb[3] = 255;
+			}
+		}
+		else
+		{
+			for (int i = 0; i < texturebytes; i++)
+			{
+				p = data[i];
+				pb = reinterpret_cast<byte*>(&trans[i]);
+
+				pb[0] = pPal[p * 3 + 0];
+				pb[1] = pPal[p * 3 + 1];
+				pb[2] = pPal[p * 3 + 2];
+				pb[3] = 255;
+			}
+		}
+	}
+	else if (iType == TEX_TYPE_LUM)
+		memcpy(trans, data, texturebytes);
+	else
+		gEngfuncs.Con_Printf("GL_Upload16: Bogus texture type!\n");
+
+	GL_Upload32(trans, width, height, mipmap, iType, filter);
 }
 
 void GLDraw_Hook()
 {
 	gl_spriteblend = gEngfuncs.pfnGetCvarPointer("gl_spriteblend");
+	gl_dither = gEngfuncs.pfnGetCvarPointer("gl_dither");
 
 	Hook(Draw_String);
 	Hook(GL_Bind);
@@ -289,7 +410,6 @@ void GLDraw_Hook()
 	Hook(BoxFilter3x3);
 	Hook(GL_Upload32);
 	Hook(GL_Upload16);
-
 
 	gEngfuncs.pfnFillRGBA = Draw_FillRGBA;
 }

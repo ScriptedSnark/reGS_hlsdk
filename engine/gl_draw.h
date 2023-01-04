@@ -63,6 +63,13 @@ void Draw_BeginDisc();
 
 void GLDraw_Hook();
 
+#define TEX_TYPE_NONE 0
+#define TEX_TYPE_ALPHA 1
+#define TEX_TYPE_LUM 2
+#define TEX_TYPE_ALPHA_GRADIENT 3
+#define TEX_TYPE_RGBA 4
+#define TEX_IS_ALPHA(type) ((type) == TEX_TYPE_ALPHA || (type) == TEX_TYPE_ALPHA_GRADIENT || (type) == TEX_TYPE_RGBA)
+
 #define MAX_GLTEXTURES 4800
 
 #endif //GL_DRAW_H_GUARD
