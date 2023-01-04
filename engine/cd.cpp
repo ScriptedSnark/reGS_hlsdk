@@ -296,7 +296,10 @@ void CCDAudio::PrimeTrack(char* filename, int looping)
 
 void CCDAudio::Resume(void)
 {
-	// TODO: implement - ScriptedSnark
+	if (!m_bInitialized)
+		return;
+
+	thread->AddThreadItem(&CCDAudio::_Resume, 0, 0);
 }
 
 void CCDAudio::SwitchToLauncher(void)
