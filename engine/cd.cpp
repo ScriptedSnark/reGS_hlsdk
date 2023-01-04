@@ -266,7 +266,7 @@ void CCDAudio::Eject(void)
 
 void CCDAudio::CloseDoor(void)
 {
-	// TODO: implement - ScriptedSnark
+	thread->AddThreadItem(&CCDAudio::_CloseDoor, 0, 0);
 }
 
 void CCDAudio::GetAudioDiskInfo(void)
