@@ -304,7 +304,7 @@ void CCDAudio::Resume(void)
 
 void CCDAudio::SwitchToLauncher(void)
 {
-	// TODO: implement - ScriptedSnark
+	thread->AddThreadItem(&CCDAudio::_SwitchToLauncher, 0, 0);
 }
 
 void CCDAudio::SwitchToEngine(void)
