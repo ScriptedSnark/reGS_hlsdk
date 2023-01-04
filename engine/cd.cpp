@@ -1,6 +1,8 @@
 #include "glquake.h"
 
 #include <mmsystem.h>
+#pragma comment(lib, "Winmm.lib")
+
 #include <stdlib.h>
 #include <time.h>
 
