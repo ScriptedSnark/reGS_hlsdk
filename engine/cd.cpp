@@ -246,7 +246,7 @@ void CCDAudio::_CDReset(int, int)
 
 void CCDAudio::Reset(void)
 {
-	// TODO: implement - ScriptedSnark
+	thread->AddThreadItem(&CCDAudio::_CDReset, 0, 0);
 }
 
 void CCDAudio::Stop(void)
