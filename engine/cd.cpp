@@ -234,7 +234,7 @@ void CCDAudio::_Init(int, int)
 		return;
 	}
 
-	for (int n = 0; n < 100; n++)
+	for (int n = 0; n < MAX_REMAP; n++)
 		m_rgRemapCD[n] = n;
 
 	GetAudioDiskInfo();
