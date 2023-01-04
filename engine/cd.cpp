@@ -477,7 +477,10 @@ void CCDAudio::MP3_Loop(void)
 
 void CCDAudio::MP3_SetPause(bool OnOff)
 {
-	// TODO: implement - ScriptedSnark
+	if (!MP3stream)
+		return;
+
+	AIL_pause_stream(MP3stream, OnOff);
 }
 
 void CDAudio_Hook()
