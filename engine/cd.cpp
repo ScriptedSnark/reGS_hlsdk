@@ -271,7 +271,7 @@ void CCDAudio::CloseDoor(void)
 
 void CCDAudio::GetAudioDiskInfo(void)
 {
-	// TODO: implement - ScriptedSnark
+	thread->AddThreadItem(&CCDAudio::_GetAudioDiskInfo, 0, 0);
 }
 
 void CCDAudio::Play(int track, bool looping)
