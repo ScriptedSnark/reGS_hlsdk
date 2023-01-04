@@ -29,6 +29,10 @@ PATTERNS(BoxFilter3x3,
 	"HL-SteamPipe-8684",
 	"55 8B EC 83 EC 1C 8B 45 ?? 53 56 57 8D 78 ??");
 
+PATTERNS(BuildGammaTable,
+	"HL-SteamPipe-8684",
+	"55 8B EC 83 EC 14 D9 45 ??");
+
 PATTERNS(BUsesSDLInput,
 	"HL-SteamPipe-8684",
 	"A0 ?? ?? ?? ?? 53 84 C0 0F 85");

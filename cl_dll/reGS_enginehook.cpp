@@ -5,6 +5,8 @@
 
 Utils utils = Utils::Utils(NULL, NULL, NULL);
 
+void V_Hook();
+
 bool HWHook()
 {
 	void* handle;
@@ -17,6 +19,7 @@ bool HWHook()
 	utils = Utils::Utils(handle, base, size);
 
 	/* Hooking all necessary funcs */
+	V_Hook();
 	CDAudio_Hook();
 	GLDraw_Hook();
 	TextDraw_Hook();

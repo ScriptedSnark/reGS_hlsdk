@@ -11,7 +11,7 @@ cvar_t* gl_spriteblend;
 cvar_t* gl_dither;
 
 int texels;
-byte texgammatable[256];
+extern byte texgammatable[256];
 
 static int scissor_x = 0, scissor_y = 0, scissor_width = 0, scissor_height = 0;
 static qboolean giScissorTest = false;
