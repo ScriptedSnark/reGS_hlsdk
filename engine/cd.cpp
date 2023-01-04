@@ -251,7 +251,7 @@ void CCDAudio::Reset(void)
 
 void CCDAudio::Stop(void)
 {
-	// TODO: implement - ScriptedSnark
+	thread->AddThreadItem(&CCDAudio::_Stop, 0, 0);
 }
 
 void CCDAudio::Pause(void)
