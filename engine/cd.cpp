@@ -314,7 +314,12 @@ void CCDAudio::SwitchToEngine(void)
 
 void CCDAudio::FadeOut(void)
 {
-	// TODO: implement - ScriptedSnark
+	if (!m_bIsPlaying)
+		return;
+
+	// TODO: get realtime
+	// m_dFadeOutTime = MP3FadeTime->value + realtime;
+	thread->AddThreadItem(&CCDAudio::_CDUpdate, 0, 0);
 }
 
 void CCDAudio::Frame(void)
