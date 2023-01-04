@@ -241,7 +241,9 @@ void CCDAudio::Shutdown(void)
 
 void CCDAudio::_CDReset(int, int)
 {
-	// TODO: implement - ScriptedSnark
+	Shutdown();
+	Sleep(1000);
+	Init();
 }
 
 void CCDAudio::Reset(void)
