@@ -206,7 +206,32 @@ int CCDAudio::Init(void)
 
 void CCDAudio::_Init(int, int)
 {
-	// TODO: implement - ScriptedSnark
+	if (gEngfuncs.CheckParm("-nocdaudio", nullptr))
+		return;
+
+	MCI_OPEN_PARMS mciOpenParms;
+	mciOpenParms.lpstrDeviceType = "cdaudio";
+
+	DWORD dwReturn;
+
+	if (dwReturn = mciSendCommand(0, MCI_OPEN, MCI_OPEN_TYPE | MCI_OPEN_SHAREABLE, (DWORD)(LPVOID)&mciOpenParms))
+		return;
+
+	m_uiDeviceID = mciOpenParms.wDeviceID;
+
+	MCI_SET_PARMS mciSetParms;
+	mciSetParms.dwTimeFormat = MCI_FORMAT_TMSF;
+
+	if (dwReturn = mciSendCommand(m_uiDeviceID, MCI_SET, MCI_SET_TIME_FORMAT, (DWORD)(LPVOID)&mciSetParms))
+	{
+		mciSendCommand(m_uiDeviceID, MCI_CLOSE, 0, (DWORD)NULL);
+		return;
+	}
+
+	for (int n = 0; n < 100; n++)
+		m_rgRemapCD[n] = n;
+
+	GetAudioDiskInfo();
 }
 
 void CCDAudio::Shutdown(void)
