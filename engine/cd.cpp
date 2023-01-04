@@ -98,7 +98,11 @@ void CCDAudio::_Pause(int, int)
 
 void CCDAudio::_Eject(int, int)
 {
-	// TODO: implement - ScriptedSnark
+	_Stop(0, 0);
+
+	DWORD dwReturn = mciSendCommand(m_uiDeviceID, MCI_SET, MCI_SET_DOOR_OPEN, (DWORD)NULL);
+
+	ResetCDTimes();
 }
 
 void CCDAudio::_CloseDoor(int, int)
