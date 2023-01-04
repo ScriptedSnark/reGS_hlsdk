@@ -309,7 +309,7 @@ void CCDAudio::SwitchToLauncher(void)
 
 void CCDAudio::SwitchToEngine(void)
 {
-	// TODO: implement - ScriptedSnark
+	thread->AddThreadItem(&CCDAudio::_SwitchToEngine, 0, 0);
 }
 
 void CCDAudio::FadeOut(void)
