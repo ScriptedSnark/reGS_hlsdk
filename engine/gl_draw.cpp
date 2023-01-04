@@ -273,6 +273,25 @@ void BoxFilter3x3(byte* out, byte* in, int w, int h, int x, int y)
 	ORIG_BoxFilter3x3(out, in, w, h, x, y); // TODO: implement
 }
 
+void GL_MipMap(byte* in, int width, int height)
+{
+	byte* out = in;
+
+	width <<= 2;
+	height >>= 1;
+
+	for (int i = 0; i < height; i++, in += width)
+	{
+		for (int j = 0; j < width; j += 8, out += 4, in += 8)
+		{
+			out[0] = (in[0] + in[4] + in[width + 0] + in[width + 4]) >> 2;
+			out[1] = (in[1] + in[5] + in[width + 1] + in[width + 5]) >> 2;
+			out[2] = (in[2] + in[6] + in[width + 2] + in[width + 6]) >> 2;
+			out[3] = (in[3] + in[7] + in[width + 3] + in[width + 7]) >> 2;
+		}
+	}
+}
+
 void GL_Upload32(unsigned int* data, int width, int height, qboolean mipmap, int iType, int filter)
 {
 	ORIG_GL_Upload32(data, width, height, mipmap, iType, filter);
