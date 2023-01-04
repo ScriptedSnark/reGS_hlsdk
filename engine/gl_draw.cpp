@@ -3,6 +3,9 @@
 _Draw_String ORIG_Draw_String = NULL;
 _GL_Bind ORIG_GL_Bind = NULL;
 _Draw_Frame ORIG_Draw_Frame = NULL;
+_BoxFilter3x3 ORIG_BoxFilter3x3 = NULL;
+_GL_Upload32 ORIG_GL_Upload32 = NULL;
+_GL_Upload16 ORIG_GL_Upload16 = NULL;
 
 cvar_t* gl_spriteblend;
 
@@ -261,6 +264,21 @@ void Draw_SpriteFrameGeneric(mspriteframe_t* pFrame, unsigned short* pPalette, i
 	pFrame->height = h;
 }
 
+void BoxFilter3x3(byte* out, byte* in, int w, int h, int x, int y)
+{
+	ORIG_BoxFilter3x3(out, in, w, h, x, y); // TODO: implement
+}
+
+void GL_Upload32(unsigned int* data, int width, int height, qboolean mipmap, int iType, int filter)
+{
+	ORIG_GL_Upload32(data, width, height, mipmap, iType, filter);
+}
+
+void GL_Upload16(unsigned char* data, int width, int height, qboolean mipmap, int iType, unsigned char* pPal, int filter)
+{
+	ORIG_GL_Upload16(data, width, height, mipmap, iType, pPal, filter);
+}
+
 void GLDraw_Hook()
 {
 	gl_spriteblend = gEngfuncs.pfnGetCvarPointer("gl_spriteblend");
@@ -268,6 +286,10 @@ void GLDraw_Hook()
 	Hook(Draw_String);
 	Hook(GL_Bind);
 	Hook(Draw_Frame);
+	Hook(BoxFilter3x3);
+	Hook(GL_Upload32);
+	Hook(GL_Upload16);
+
 
 	gEngfuncs.pfnFillRGBA = Draw_FillRGBA;
 }

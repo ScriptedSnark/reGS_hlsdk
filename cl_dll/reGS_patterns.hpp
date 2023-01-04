@@ -25,6 +25,10 @@ PATTERNS(build_number,
 	"HL-SteamPipe-8684",
 	"55 8B EC 83 EC 08 A1 ?? ?? ?? ?? 56 33 F6 85 C0 0F 85 9B 00 00 00 53 33 DB 8B 04 9D ?? ?? ?? ?? 8B 0D ?? ?? ?? ?? 6A 03 50 51 E8");
 
+PATTERNS(BoxFilter3x3,
+	"HL-SteamPipe-8684",
+	"55 8B EC 83 EC 1C 8B 45 ?? 53 56 57 8D 78 ??");
+
 PATTERNS(BUsesSDLInput,
 	"HL-SteamPipe-8684",
 	"A0 ?? ?? ?? ?? 53 84 C0 0F 85");

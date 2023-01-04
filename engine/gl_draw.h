@@ -14,6 +14,9 @@
 typedef int (*_Draw_String)(int x, int y, char* str);
 typedef int (*_GL_Bind)(int texnum);
 typedef void (*_Draw_Frame)(mspriteframe_t* pFrame, int ix, int iy, const wrect_t* prcSubRect);
+typedef void (*_BoxFilter3x3)(byte* out, byte* in, int w, int h, int x, int y);
+typedef void (*_GL_Upload32)(unsigned int* data, int width, int height, qboolean mipmap, int iType, int filter);
+typedef void (*_GL_Upload16)(unsigned char* data, int width, int height, qboolean mipmap, int iType, unsigned char* pPal, int filter);
 
 extern _GL_Bind ORIG_GL_Bind;
 extern _Draw_Frame ORIG_Draw_Frame;
