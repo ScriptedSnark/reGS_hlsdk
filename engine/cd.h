@@ -42,6 +42,8 @@ void MP3_Suspend_Audio(void);
 
 void PrimeMusicStream(char* filename, int looping);
 
+void CDAudio_Hook();
+
 #endif //CD_H_GUARD
 
 #undef CD_H_RECURSE_GUARD

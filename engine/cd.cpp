@@ -16,6 +16,10 @@ HSTREAM MP3stream;
 char* g_pszMP3trackFileMap[200];
 int g_iMP3FirstMalloc, g_iMP3NumTracks;
 
+cvar_t* bgmvolume;
+cvar_t* MP3Volume;
+cvar_t* MP3FadeTime;
+
 CCDAudio* GetInteralCDAudio(void)
 {
 	return &g_CDAudio;
@@ -436,4 +440,11 @@ void CCDAudio::MP3_Loop(void)
 void CCDAudio::MP3_SetPause(bool OnOff)
 {
 	// TODO: implement - ScriptedSnark
+}
+
+void CDAudio_Hook()
+{
+	bgmvolume = gEngfuncs.pfnGetCvarPointer("bgmvolume");
+	MP3Volume = gEngfuncs.pfnGetCvarPointer("MP3Volume");
+	MP3FadeTime = gEngfuncs.pfnGetCvarPointer("MP3FadeTime");
 }

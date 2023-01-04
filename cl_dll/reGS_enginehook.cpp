@@ -17,6 +17,7 @@ bool HWHook()
 	utils = Utils::Utils(handle, base, size);
 
 	/* Hooking all necessary funcs */
+	CDAudio_Hook();
 	GLDraw_Hook();
 	TextDraw_Hook();
 	VGuiWrap2_Hook();
