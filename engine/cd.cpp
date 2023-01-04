@@ -282,7 +282,29 @@ void CCDAudio::FadeOut(void)
 
 void CCDAudio::Frame(void)
 {
-	// TODO: implement - ScriptedSnark
+	if (!m_bEnabled)
+		return;
+
+	if (m_flVolume != bgmvolume->value)
+	{
+		if (m_flVolume != 0.0f)
+		{
+			m_flVolume = 0.0f;
+			Pause();
+		}
+		else
+		{
+			m_flVolume = 1.0f;
+			Resume();
+		}
+
+		bgmvolume->value = m_flVolume;
+	}
+
+	if (m_dFadeOutTime == 0.0 && m_flMP3Volume != MP3Volume->value)
+		m_flMP3Volume = MP3_SetVolume(MP3Volume->value);
+
+	thread->AddThreadItem(&CCDAudio::_CDUpdate, 0, 0);
 }
 
 void CDAudio_Init(void)

@@ -24,6 +24,7 @@ public:
 
 extern ICDAudio* cdaudio;
 
+extern cvar_t* bgmvolume;
 extern cvar_t* MP3Volume;
 extern cvar_t* MP3FadeTime;
 
