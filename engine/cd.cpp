@@ -261,7 +261,7 @@ void CCDAudio::Pause(void)
 
 void CCDAudio::Eject(void)
 {
-	// TODO: implement - ScriptedSnark
+	thread->AddThreadItem(&CCDAudio::_Eject, 0, 0);
 }
 
 void CCDAudio::CloseDoor(void)
