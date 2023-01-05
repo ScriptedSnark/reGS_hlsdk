@@ -24,6 +24,7 @@ extern Utils utils;
 
 #include "mem.h"
 #include "wad.h"
+#include "sys_getmodes.h"
 #include "gl_model.h"
 #include "cl_tent.h"
 #include "gl_draw.h"

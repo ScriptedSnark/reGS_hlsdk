@@ -113,6 +113,10 @@ PATTERNS(Cmd_FindCmd,
 	"HL-SteamPipe-8684",
 	"55 8B EC 56 8B 35 ?? ?? ?? ?? 85 F6 57 74 ?? 8B 7D ?? 8B 46 ?? 50 57 E8 ?? ?? ?? ?? 83 C4 08 85 C0 74 ?? 8B 36 85 F6 75 ?? 5F 33 C0 5E 5D C3 8B C6");
 
+PATTERNS(ComputeScaledSize,
+	"HL-SteamPipe-8684",
+	"55 8B EC 51 A1 ?? ?? ?? ?? 56 85 C0 74 ?? 8B 45 ??");
+
 PATTERNS(Cvar_DirectSet,
 	"HL-SteamPipe-8684",
 	"55 8B EC 81 EC ?? ?? ?? ?? 56 8B 75 0C 57 8B 7D 08 85 FF 0F 84 ?? ?? ?? ?? 85 F6 0F 84 ?? ?? ?? ?? ?? 47 08");
@@ -156,6 +160,14 @@ PATTERNS(ED_ParseEdict,
 PATTERNS(GL_Bind,
 	"HL-SteamPipe-8684",
 	"55 8B EC 8B 45 ?? 8B 0D ?? ?? ?? ?? 56");
+
+PATTERNS(GL_ResampleTexture,
+	"HL-SteamPipe-8684",
+	"55 8B EC B8 14 20 00 00 E8 ?? ?? ?? ?? 8B 45 ??");
+
+PATTERNS(GL_ResampleAlphaTexture,
+	"HL-SteamPipe-8684",
+	"55 8B EC 81 EC 14 08 00 00");
 
 PATTERNS(GL_Upload32,
 	"HL-SteamPipe-8684",
@@ -408,6 +420,10 @@ PATTERNS(VGuiWrap2_ConPrintf,
 PATTERNS(VGuiWrap2_NotifyOfServerConnect,
 	"HL-SteamPipe-8684",
 	"55 8B EC 8B 0D ?? ?? ?? ?? 33 C0");
+
+PATTERNS(VideoMode_GetCurrentVideoMode,
+	"HL-SteamPipe-8684",
+	"55 8B EC 8B 0D ?? ?? ?? ?? 8B 01 FF 50 ?? 85 C0");
 }
 }
 

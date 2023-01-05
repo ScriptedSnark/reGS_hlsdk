@@ -197,10 +197,11 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClCompile Include="..\..\engine\gl_draw.cpp" />
     <ClCompile Include="..\..\engine\gl_screen.cpp" />
     <ClCompile Include="..\..\engine\mem.cpp" />
+    <ClCompile Include="..\..\engine\sys_getmodes.cpp" />
     <ClCompile Include="..\..\engine\thread.cpp" />
     <ClCompile Include="..\..\engine\vgui2\text_draw.cpp" />
     <ClCompile Include="..\..\engine\vgui_intwrap2.cpp" />
-    <ClCompile Include="..\..\engine\view.cpp" />
+    <ClCompile Include="..\..\engine\hw_view.cpp" />
     <ClCompile Include="..\..\external\MinHook\buffer.c" />
     <ClCompile Include="..\..\external\MinHook\hde\hde32.c" />
     <ClCompile Include="..\..\external\MinHook\hde\hde64.c" />
@@ -317,6 +318,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClInclude Include="..\..\engine\spritegn.h" />
     <ClInclude Include="..\..\engine\studio.h" />
     <ClInclude Include="..\..\engine\ithread.h" />
+    <ClInclude Include="..\..\engine\sys_getmodes.h" />
     <ClInclude Include="..\..\engine\vgui2\text_draw.h" />
     <ClInclude Include="..\..\engine\vgui_intwrap2.h" />
     <ClInclude Include="..\..\engine\wad.h" />

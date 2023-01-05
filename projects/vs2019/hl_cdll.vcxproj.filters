@@ -383,7 +383,10 @@
     <ClCompile Include="..\..\engine\mem.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\view.cpp">
+    <ClCompile Include="..\..\engine\hw_view.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\sys_getmodes.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -758,6 +761,9 @@
       <Filter>Header Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\engine\cdaudio.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\sys_getmodes.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
   </ItemGroup>

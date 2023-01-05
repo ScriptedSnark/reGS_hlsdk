@@ -21,9 +21,9 @@ bool HWHook()
 	/* Hooking all necessary funcs */
 	V_Hook();
 	CDAudio_Hook();
-	GLDraw_Hook();
 	TextDraw_Hook();
 	VGuiWrap2_Hook();
+	GLDraw_Hook();
 
 	MH_EnableHook(MH_ALL_HOOKS);
 

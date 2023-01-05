@@ -43,11 +43,9 @@ void BuildGammaTable(float g)
 
 		texgammatable[i] = inf;
 	}
-
 	// ...
 	// Further code is for other gamma tables. Not necessary for GL_Upload32/16.
-	g = original_g;
-	ORIG_BuildGammaTable(g);
+	ORIG_BuildGammaTable(original_g);
 }
 
 void V_Hook()

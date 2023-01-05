@@ -4,11 +4,15 @@ _Draw_String ORIG_Draw_String = NULL;
 _GL_Bind ORIG_GL_Bind = NULL;
 _Draw_Frame ORIG_Draw_Frame = NULL;
 _BoxFilter3x3 ORIG_BoxFilter3x3 = NULL;
+_ComputeScaledSize ORIG_ComputeScaledSize = NULL;
+_GL_ResampleTexture ORIG_GL_ResampleTexture = NULL;
+_GL_ResampleAlphaTexture ORIG_GL_ResampleAlphaTexture = NULL;
 _GL_Upload32 ORIG_GL_Upload32 = NULL;
 _GL_Upload16 ORIG_GL_Upload16 = NULL;
 
 cvar_t* gl_spriteblend;
 cvar_t* gl_dither;
+cvar_t* gl_ansio;
 
 int texels;
 extern byte texgammatable[256];
@@ -268,6 +272,11 @@ void Draw_SpriteFrameGeneric(mspriteframe_t* pFrame, unsigned short* pPalette, i
 	pFrame->height = h;
 }
 
+void ComputeScaledSize(int* wscale, int* hscale, int width, int height)
+{
+	ORIG_ComputeScaledSize(wscale, hscale, width, height);
+}
+
 void BoxFilter3x3(byte* out, byte* in, int w, int h, int x, int y)
 {
 	ORIG_BoxFilter3x3(out, in, w, h, x, y); // TODO: implement
@@ -292,14 +301,170 @@ void GL_MipMap(byte* in, int width, int height)
 	}
 }
 
+void GL_ResampleTexture(unsigned int* in, int inwidth, int inheight, unsigned int* out, int outwidth, int outheight)
+{
+	ORIG_GL_ResampleTexture(in, inwidth, inheight, out, outwidth, outheight);
+}
+
+void GL_ResampleAlphaTexture(byte* in, int inwidth, int inheight, byte* out, int outwidth, int outheight)
+{
+	ORIG_GL_ResampleAlphaTexture(in, inwidth, inheight, out, outwidth, outheight);
+}
+
+int giTotalTextures;
+int giTotalTexBytes;
+
 void GL_Upload32(unsigned int* data, int width, int height, qboolean mipmap, int iType, int filter)
 {
-	ORIG_GL_Upload32(data, width, height, mipmap, iType, filter);
+#ifdef REGS_FIXES
+	static unsigned scaled[2048 * 1024]; // 2x from limit (HD textures support)
+#else
+	static unsigned scaled[1024 * 512];
+#endif
+
+	int scaled_width, scaled_height;
+	int iFormat = NULL, iComponent = NULL;
+
+	int w, h, bpp;
+	VideoMode_GetCurrentVideoMode(&w, &h, &bpp);
+
+	int texbytes = width * height;
+
+	giTotalTexBytes += texbytes;
+
+	if (iType != TEX_TYPE_LUM)
+		giTotalTexBytes += 2 * texbytes;
+
+	giTotalTextures++;
+
+	if (gl_spriteblend->value != 0.0f && TEX_IS_ALPHA(iType))
+	{
+		for (int i = 0; i < texbytes; i++)
+		{
+			if (!data[i])
+				BoxFilter3x3(reinterpret_cast<byte*>(&data[i]), reinterpret_cast<byte*>(data), width, height, i % width, i / width);
+		}
+	}
+
+	ComputeScaledSize(&scaled_width, &scaled_height, width, height);
+
+	if (scaled_width * scaled_height > sizeof(scaled) / 4)
+		gEngfuncs.Con_Printf("GL_LoadTexture: too big"); // Sys_Error
+
+	switch (iType)
+	{
+	default:
+		gEngfuncs.Con_Printf("GL_Upload32: Bad texture type"); // Sys_Error
+		break;
+
+	case TEX_TYPE_NONE:
+		iFormat = GL_RGBA;
+
+		if (bpp == 16)
+			iComponent = GL_RGB8;
+		else
+			iComponent = GL_RGBA8;
+
+		break;
+
+	case TEX_TYPE_ALPHA:
+	case TEX_TYPE_ALPHA_GRADIENT:
+		iFormat = GL_RGBA;
+
+		if (bpp == 16)
+			iComponent = GL_RGBA4;
+		else
+			iComponent = GL_RGBA8;
+		break;
+
+	case TEX_TYPE_LUM:
+		iFormat = GL_LUMINANCE;
+		iComponent = GL_LUMINANCE8;
+		break;
+
+	case TEX_TYPE_RGBA:
+		iFormat = GL_RGBA;
+
+		if (bpp == 16)
+			iComponent = GL_RGB5_A1;
+		else
+			iComponent = GL_RGBA8;
+
+		break;
+	}
+
+	if (scaled_width == width && scaled_height == height)
+	{
+		if (!mipmap)
+		{
+			glTexImage2D(GL_TEXTURE_2D, GL_ZERO, iComponent, width, height, GL_ZERO, iFormat, GL_UNSIGNED_BYTE, data);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, gl_ansio->value);
+		}
+
+		if (iType != TEX_TYPE_LUM)
+			texbytes *= 4;
+
+		memcpy(scaled, data, texbytes);
+	}
+	else
+	{
+		if (iType != TEX_TYPE_LUM)
+			GL_ResampleTexture(data, width, height, scaled, scaled_width, scaled_height);
+		else
+			GL_ResampleAlphaTexture(reinterpret_cast<byte*>(data), width, height, reinterpret_cast<byte*>(scaled), scaled_width, scaled_height);
+	}
+
+	texels += scaled_width * scaled_height; // TODO: implement GL_Texels_f
+	glTexImage2D(GL_TEXTURE_2D, GL_ZERO, iComponent, scaled_width, scaled_height, GL_ZERO, iFormat, GL_UNSIGNED_BYTE, scaled);
+
+	if (mipmap)
+	{
+		int miplevel = 0;
+
+		while (scaled_width > 1 || scaled_height > 1)
+		{
+			GL_MipMap(reinterpret_cast<byte*>(scaled), scaled_width, scaled_height);
+
+			scaled_width >>= 1;
+			scaled_height >>= 1;
+
+			if (scaled_width < 1)
+				scaled_width = 1;
+
+			if (scaled_height < 1)
+				scaled_height = 1;
+
+			texels += scaled_width * scaled_height; // TODO: implement GL_Texels_f
+
+			miplevel++;
+			glTexImage2D(GL_TEXTURE_2D, miplevel, iComponent, scaled_width, scaled_height, GL_ZERO, iFormat, GL_UNSIGNED_BYTE, scaled);
+		}
+	}
+
+	/* TODO: get gl_filter_min / gl_filer_max
+	if (mipmap)
+	{
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, gl_filter_min);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, gl_filter_max);
+	}
+	else
+	*/
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, gl_ansio->value);
 }
 
 void GL_Upload16(unsigned char* data, int width, int height, qboolean mipmap, int iType, unsigned char* pPal, int filter)
 {
+#ifdef REGS_FIXES // Support 1024x1024/2048x1024 textures (4x from limit because it can crash) 
+	static unsigned trans[2560 * 1920];
+#else
 	static unsigned trans[640 * 480];
+#endif
+
 	unsigned char* pb, *ppix;
 	bool noalpha = true;
 	int texturebytes = width * height;
@@ -307,7 +472,11 @@ void GL_Upload16(unsigned char* data, int width, int height, qboolean mipmap, in
 
 	if (texturebytes > sizeof(trans))
 	{
+#ifdef REGS_FIXES
+		gEngfuncs.Con_Printf("Can't upload (%ix%i) texture, it's > 2560*1920 bytes\n", width, height);
+#else
 		gEngfuncs.Con_Printf("Can't upload (%ix%i) texture, it's > 640*480 bytes\n", width, height);
+#endif
 		return;
 	}
 
@@ -422,13 +591,19 @@ void GLDraw_Hook()
 {
 	gl_spriteblend = gEngfuncs.pfnGetCvarPointer("gl_spriteblend");
 	gl_dither = gEngfuncs.pfnGetCvarPointer("gl_dither");
+	gl_ansio = gEngfuncs.pfnGetCvarPointer("gl_ansio");
 
 	Hook(Draw_String);
 	Hook(GL_Bind);
 	Hook(Draw_Frame);
 	Hook(BoxFilter3x3);
+	Hook(VideoMode_GetCurrentVideoMode);
+	Hook(ComputeScaledSize);
+	Hook(GL_ResampleTexture);
+	Hook(GL_ResampleAlphaTexture);
 	Hook(GL_Upload32);
 	Hook(GL_Upload16);
 
+	MH_EnableHook(MH_ALL_HOOKS);
 	gEngfuncs.pfnFillRGBA = Draw_FillRGBA;
 }
