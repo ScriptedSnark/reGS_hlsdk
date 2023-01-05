@@ -17,8 +17,6 @@ struct SPRITELIST
 
 msprite_t* SPR_Pointer(SPRITELIST* pList);
 //int SPR_Frames(HSPRITE hSprite);
-int SPR_Height(HSPRITE hSprite, int frame);
-int SPR_Width(HSPRITE hSprite, int frame);
 
 
 

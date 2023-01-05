@@ -83,10 +83,10 @@ inline struct cvar_s* CVAR_CREATE(const char* cv, const char* val, const int fla
 #define SetCrosshair (*gEngfuncs.pfnSetCrosshair)
 #define AngleVectors (*gEngfuncs.pfnAngleVectors)
 
+#define SPR_Height (*gEngfuncs.pfnSPR_Height)
+#define SPR_Width (*gEngfuncs.pfnSPR_Width)
 
 // Gets the height & width of a sprite,  at the specified frame
-int SPR_Height(HSPRITE x, int f);
-int SPR_Width(HSPRITE x, int f);
 
 inline client_textmessage_t* TextMessageGet(const char* pName) { return gEngfuncs.pfnTextMessageGet(pName); }
 inline int TextMessageDrawChar(int x, int y, int number, int r, int g, int b)
