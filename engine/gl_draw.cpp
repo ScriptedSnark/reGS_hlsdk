@@ -54,7 +54,7 @@ void Draw_FillRGBA(int x, int y, int w, int h, int r, int g, int b, int a)
 	glBlendFunc(GL_SRC_ALPHA, GL_LINES);
 	glColor4f(r / 255.0, g / 255.0, b / 255.0, a / 255.0);
 
-	glBegin(GL_RELATIVE_HORIZONTAL_LINE_TO_NV);
+	glBegin(GL_QUADS);
 	glVertex2f(x, y);
 	glVertex2f(w + x, y);
 	glVertex2f(w + x, h + y);
@@ -82,7 +82,7 @@ void Draw_FillRGBABlend(int x, int y, int w, int h, int r, int g, int b, int a)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glColor4f(r / 255.0, g / 255.0, b / 255.0, a / 255.0);
 
-	glBegin(GL_RELATIVE_HORIZONTAL_LINE_TO_NV);
+	glBegin(GL_QUADS);
 	glVertex2f(x, y);
 	glVertex2f(w + x, y);
 	glVertex2f(w + x, h + y);

@@ -41,6 +41,7 @@ int SPR_Frames(HSPRITE hSprite)
 	return NULL;
 }
 
+/*
 int SPR_Height(HSPRITE hSprite, int frame)
 {
 	SPRITELIST* sprlist;
@@ -86,7 +87,7 @@ int SPR_Width(HSPRITE hSprite, int frame)
 
 	return NULL;
 }
-
+*/
 void SPR_Set(HSPRITE hSprite, int r, int g, int b)
 {
 	SPRITELIST* sprlist = nullptr;
