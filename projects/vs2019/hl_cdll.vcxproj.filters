@@ -389,6 +389,12 @@
     <ClCompile Include="..\..\engine\sys_getmodes.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\snd_dma.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\snd_mix.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\cl_dll\kbutton.h">
@@ -764,6 +770,9 @@
       <Filter>Header Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\engine\sys_getmodes.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\sound.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
   </ItemGroup>

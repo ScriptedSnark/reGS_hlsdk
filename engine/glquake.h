@@ -35,6 +35,7 @@ extern Utils utils;
 #include "cd.h"
 #include "cdaudio.h"
 #include "ithread.h"
+#include "sound.h"
 
 #endif //GLQUAKE_H_GUARD
 
