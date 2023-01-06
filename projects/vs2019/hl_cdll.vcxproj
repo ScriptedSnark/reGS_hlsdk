@@ -199,6 +199,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClCompile Include="..\..\engine\mem.cpp" />
     <ClCompile Include="..\..\engine\snd_dma.cpp" />
     <ClCompile Include="..\..\engine\snd_mix.cpp" />
+    <ClCompile Include="..\..\engine\snd_win.cpp" />
     <ClCompile Include="..\..\engine\sys_getmodes.cpp" />
     <ClCompile Include="..\..\engine\thread.cpp" />
     <ClCompile Include="..\..\engine\vgui2\text_draw.cpp" />
