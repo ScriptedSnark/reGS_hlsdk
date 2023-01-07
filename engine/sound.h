@@ -119,6 +119,7 @@ struct wavinfo_t
 	int dataofs;
 };
 
+/*
 struct wavstream_t
 {
 	int csamplesplayed;
@@ -127,6 +128,7 @@ struct wavstream_t
 	wavinfo_t info;
 	int lastposloaded;
 };
+*/
 
 struct voxword_t
 {

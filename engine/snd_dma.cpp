@@ -1,12 +1,5 @@
 #include "glquake.h"
 
-#include "SDL2/SDL.h"
-#include <SDL2/SDL_syswm.h>
-
-#include <mmeapi.h>
-#include <mmsystem.h>
-#include <dsound.h>
-
 void S_AmbientOff(void)
 {
     // TODO: implement - ScriptedSnark
@@ -40,31 +33,37 @@ void S_Shutdown(void)
 sfx_t* S_FindName(char* name, int* pfInCache)
 {
      // TODO: implement - ScriptedSnark
+    return nullptr;
 }
 
 sfx_t* S_PrecacheSound(char* name)
 {
      // TODO: implement - ScriptedSnark
+    return nullptr;
 }
 
 bool SND_FStreamIsPlaying(sfx_t* sfx)
 {
      // TODO: implement - ScriptedSnark
+    return false;
 }
 
 channel_t* SND_PickDynamicChannel(int entnum, int entchannel, sfx_t* sfx)
 {
      // TODO: implement - ScriptedSnark
+    return nullptr;
 }
 
 channel_t* SND_PickStaticChannel(int entnum, int entchannel, sfx_t* sfx)
 {
      // TODO: implement - ScriptedSnark
+    return nullptr;
 }
 
 int S_AlterChannel(int entnum, int entchannel, sfx_t* sfx, int vol, int pitch, int flags)
 {
      // TODO: implement - ScriptedSnark
+    return 0;
 }
 
 void S_StartDynamicSound(int entnum, int entchannel, sfx_t* sfx, vec_t* origin, float fvol, float attenuation, int flags, int pitch)

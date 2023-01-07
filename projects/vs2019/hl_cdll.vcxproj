@@ -194,6 +194,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClCompile Include="..\..\engine\cd.cpp" />
     <ClCompile Include="..\..\engine\cl_draw.cpp" />
     <ClCompile Include="..\..\engine\cl_tent.cpp" />
+    <ClCompile Include="..\..\engine\filesystem_internal.cpp" />
     <ClCompile Include="..\..\engine\gl_draw.cpp" />
     <ClCompile Include="..\..\engine\gl_screen.cpp" />
     <ClCompile Include="..\..\engine\mem.cpp" />
@@ -310,6 +311,7 @@ cmd /c ""$(ProjectDir)..\..\filecopy.bat" "$(OutDir)" "cl_dlls" "$(TargetName).p
     <ClInclude Include="..\..\engine\customentity.h" />
     <ClInclude Include="..\..\engine\edict.h" />
     <ClInclude Include="..\..\engine\eiface.h" />
+    <ClInclude Include="..\..\engine\hw_filesystem.h" />
     <ClInclude Include="..\..\engine\glquake.h" />
     <ClInclude Include="..\..\engine\gl_draw.h" />
     <ClInclude Include="..\..\engine\gl_model.h" />

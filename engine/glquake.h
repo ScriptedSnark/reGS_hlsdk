@@ -24,6 +24,8 @@ extern Utils utils;
 
 #include "mem.h"
 #include "wad.h"
+#include "FileSystem.h"
+#include "hw_filesystem.h"
 #include "sys_getmodes.h"
 #include "gl_model.h"
 #include "cl_tent.h"

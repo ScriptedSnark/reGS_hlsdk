@@ -398,6 +398,9 @@
     <ClCompile Include="..\..\engine\snd_win.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\filesystem_internal.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\cl_dll\kbutton.h">
@@ -776,6 +779,9 @@
       <Filter>Header Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\engine\sound.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\hw_filesystem.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
   </ItemGroup>

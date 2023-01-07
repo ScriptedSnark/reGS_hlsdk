@@ -33,6 +33,7 @@ void S_FreeChannel(channel_t* ch)
 bool S_CheckWavEnd(channel_t* ch, sfxcache_t** psc, int ltime, int ichan)
 {
     // TODO: implement - ScriptedSnark
+    return false;
 }
 
 void S_MixChannelsToPaintbuffer(int end, int fPaintHiresSounds, int voiceOnly)
@@ -78,6 +79,7 @@ void SX_Free(void)
 bool SXDLY_Init(int idelay, float delay)
 {
     // TODO: implement - ScriptedSnark
+    return false;
 }
 
 void SXDLY_Free(int idelay)
@@ -133,6 +135,7 @@ void SX_RoomFX(int count, int fFilter, int fTimefx)
 int Wavstream_Init(void)
 {
     // TODO: implement - ScriptedSnark
+    return 0;
 }
 
 void Wavstream_Close(int i)
@@ -188,6 +191,7 @@ void VOX_ParseString(char* psz)
 char* VOX_GetDirectory(char* szpath, char* psz, int nsize)
 {
     // TODO: implement - ScriptedSnark
+    return nullptr;
 }
 
 void VOX_SetChanVol(channel_t* ch)
@@ -198,11 +202,13 @@ void VOX_SetChanVol(channel_t* ch)
 int VOX_ParseWordParams(char* psz, voxword_t* pvoxword, int fFirst)
 {
     // TODO: implement - ScriptedSnark
+    return 0;
 }
 
 int VOX_IFindEmptySentence(void)
 {
     // TODO: implement - ScriptedSnark
+    return 0;
 }
 
 void VOX_MakeSingleWordSentence(channel_t* ch, int pitch)
@@ -213,11 +219,13 @@ void VOX_MakeSingleWordSentence(channel_t* ch, int pitch)
 sfxcache_t* VOX_LoadSound(channel_t* pchan, char* pszin)
 {
     // TODO: implement - ScriptedSnark
+    return nullptr;
 }
 
 int VOX_FPaintPitchChannelFrom8Offs(portable_samplepair_t* paintbuffer, channel_t* ch, sfxcache_t* sc, int count, int pitch, int timecompress, int offset)
 {
     // TODO: implement - ScriptedSnark
+    return 0;
 }
 
 void VOX_ReadSentenceFile(void)
@@ -233,6 +241,7 @@ void VOX_Shutdown(void)
 char* VOX_LookupString(char* pszin, int* psentencenum)
 {
     // TODO: implement - ScriptedSnark
+    return nullptr;
 }
 
 void VOX_TrimStartEndTimes(channel_t* ch, sfxcache_t* sc)
