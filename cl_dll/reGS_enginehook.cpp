@@ -6,6 +6,7 @@
 Utils utils = Utils::Utils(NULL, NULL, NULL);
 
 void V_Hook();
+void R_Hook();
 
 bool HWHook()
 {
@@ -24,6 +25,7 @@ bool HWHook()
 	TextDraw_Hook();
 	VGuiWrap2_Hook();
 	GLDraw_Hook();
+	R_Hook();
 
 	MH_EnableHook(MH_ALL_HOOKS);
 
